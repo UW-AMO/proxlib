@@ -1,10 +1,6 @@
 import sys
-import subprocess
-from pkg_resources import working_set
 from pathlib import Path
-from setuptools import setup, find_packages
-import numpy
-from Cython.Build import cythonize
+from setuptools import dist, setup, find_packages
 
 
 if __name__ == "__main__":
@@ -17,18 +13,10 @@ if __name__ == "__main__":
     with (base_dir/"README.rst").open() as f:
         long_description = f.read()
 
-    install_requirements = [
-        "numpy",
-        "scipy",
-        "cython",
-    ]
-
-    # installed_pkgs = [p.key for p in working_set]
-    # for pkg in install_requirements:
-    #     if pkg not in installed_pkgs:
-    #         subprocess.check_call([sys.executable, "-m", "pip", "install", pkg])
-    # import numpy
-    # from Cython.Build import cythonize
+    install_requirements = ["numpy", "scipy", "cython"]
+    dist.Distribution().fetch_build_eggs(install_requirements)
+    import numpy
+    from Cython.Build import cythonize
 
     test_requirements = [
         "pytest",
