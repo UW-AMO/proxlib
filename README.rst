@@ -13,7 +13,7 @@ Install
 -------
 
 To install the package, you will need to be able to compile the Cython script.
-You could simple acquire the package from ``PyPI`.
+You could simple acquire the package from PyPI.
 
 .. code-block:: bash
 
