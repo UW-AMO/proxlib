@@ -3,7 +3,6 @@ import subprocess
 from pkg_resources import working_set
 from pathlib import Path
 from setuptools import setup, find_packages
-import numpy
 from Cython.Build import cythonize
 
 
