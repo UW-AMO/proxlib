@@ -23,8 +23,7 @@ if __name__ == "__main__":
     ]
 
     doc_requirements = []
-    print(src_dir)
-    print(src_dir.as_posix())
+
     setup(name=about.__title__,
           version=about.__version__,
 
