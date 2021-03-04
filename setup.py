@@ -6,13 +6,6 @@ from setuptools import setup, find_packages
 
 
 if __name__ == "__main__":
-    installed_pkgs = [p.key for p in working_set]
-    for pkg in ["numpy", "cython"]:
-        if pkg not in installed_pkgs:
-            subprocess.check_call([sys.executable, "-m", "pip", "install", pkg])
-    import numpy
-    from Cython.Build import cythonize
-
     base_dir = Path(__file__).parent
     src_dir = base_dir/"src"/"proxlib"
 
@@ -27,6 +20,13 @@ if __name__ == "__main__":
         "scipy",
         "cython",
     ]
+
+    installed_pkgs = [p.key for p in working_set]
+    for pkg in install_requirements:
+        if pkg not in installed_pkgs:
+            subprocess.check_call([sys.executable, "-m", "pip", "install", pkg])
+    import numpy
+    from Cython.Build import cythonize
 
     test_requirements = [
         "pytest",
