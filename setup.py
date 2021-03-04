@@ -1,4 +1,6 @@
 import sys
+import subprocess
+from pkg_resources import working_set
 from pathlib import Path
 from setuptools import setup, find_packages
 import numpy
@@ -6,6 +8,11 @@ from Cython.Build import cythonize
 
 
 if __name__ == "__main__":
+    installed_pkgs = [p.key for p in working_set]
+    if "numpy" not in installed_pkgs:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "numpy"])
+    import numpy
+
     base_dir = Path(__file__).parent
     src_dir = base_dir/"src"/"proxlib"
 
