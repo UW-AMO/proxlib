@@ -3,6 +3,8 @@ import subprocess
 from pkg_resources import working_set
 from pathlib import Path
 from setuptools import setup, find_packages
+import numpy
+from Cython.Build import cythonize
 
 
 if __name__ == "__main__":
@@ -21,12 +23,12 @@ if __name__ == "__main__":
         "cython",
     ]
 
-    installed_pkgs = [p.key for p in working_set]
-    for pkg in install_requirements:
-        if pkg not in installed_pkgs:
-            subprocess.check_call([sys.executable, "-m", "pip", "install", pkg])
-    import numpy
-    from Cython.Build import cythonize
+    # installed_pkgs = [p.key for p in working_set]
+    # for pkg in install_requirements:
+    #     if pkg not in installed_pkgs:
+    #         subprocess.check_call([sys.executable, "-m", "pip", "install", pkg])
+    # import numpy
+    # from Cython.Build import cythonize
 
     test_requirements = [
         "pytest",
@@ -49,6 +51,7 @@ if __name__ == "__main__":
           packages=find_packages(where="src"),
           include_package_data=True,
 
+          setup_requires=install_requirements,
           install_requires=install_requirements,
           tests_require=test_requirements,
           extras_require={
