@@ -47,6 +47,6 @@ if __name__ == "__main__":
               "test": test_requirements,
               "dev": doc_requirements + test_requirements
           },
-          ext_modules=cythonize(f"{src_dir}/operators.pyx"),
+          ext_modules=cythonize(src_dir / "operators.pyx"),
           include_dirs=[numpy.get_include()],
           zip_safe=False,)
