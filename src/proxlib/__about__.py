@@ -7,7 +7,7 @@ __title__ = "proxlib"
 __summary__ = "Prox-operator library for optimization"
 __uri__ = "https://github.com/UW-AMO/proxlib"
 
-__version__ = "0.0.0"
+__version__ = "0.0.1"
 
 __author__ = "Peng Zheng"
 __email__ = "zhengp@uw.eud"
