@@ -13,6 +13,8 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
+    env:
+      CIBW_BUILD: pp* cp3*-*
     
     steps:
       - uses: actions/checkout@v2
