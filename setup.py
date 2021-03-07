@@ -1,8 +1,9 @@
 import sys
-import subprocess
-from pkg_resources import working_set
 from pathlib import Path
 from setuptools import setup, find_packages
+
+import numpy
+from Cython.Build import cythonize
 
 
 if __name__ == "__main__":
@@ -20,13 +21,6 @@ if __name__ == "__main__":
         "scipy",
         "cython",
     ]
-
-    installed_pkgs = [p.key for p in working_set]
-    for pkg in install_requirements:
-        if pkg not in installed_pkgs:
-            subprocess.check_call([sys.executable, "-m", "pip", "install", pkg])
-    import numpy
-    from Cython.Build import cythonize
 
     test_requirements = [
         "pytest",
@@ -56,6 +50,6 @@ if __name__ == "__main__":
               "test": test_requirements,
               "dev": doc_requirements + test_requirements
           },
-          ext_modules=cythonize('src/proxlib/operators.pyx'),
+          ext_modules=cythonize(['src/proxlib/operators.pyx']),
           include_dirs=[numpy.get_include()],
           zip_safe=False,)
